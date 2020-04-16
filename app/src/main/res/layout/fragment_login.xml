@@ -29,6 +29,8 @@
         android:layout_marginTop="120dp"
         android:hint="Enter email"
          android:textColorHint="#FFFFFF"
+         android:textColor="@color/cardview_light_background"
+         android:textColorHighlight="#11212F"
          />
       <EditText
           android:id="@+id/Lpass"
@@ -37,6 +39,8 @@
           android:layout_marginTop="3dp"
           android:hint="Enter password"
           android:textColorHint="#FFFFFF"
+          android:textColor="@color/cardview_light_background"
+          android:textColorHighlight="#11212F"
           />
       <Button
           android:id="@+id/login"

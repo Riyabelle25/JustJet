@@ -5,30 +5,44 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
+import com.example.justjet.dialog;
 
+public class HomeFragment extends Fragment {
 
-public class HomeFragment extends Fragment{
-    private TextView Name;
-    private TextView ID;
+    private ListView Listt;
+
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<String> arrayList1 = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
     private static View view;
     private static Button Add;
-    private FirebaseAuth mAuth;
-
     public HomeFragment() {
     }
 
@@ -37,32 +51,75 @@ public class HomeFragment extends Fragment{
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Name =(TextView) view.findViewById(R.id.name);
-        ID = (TextView) view.findViewById(R.id.id);
-        Add=(Button)view.findViewById(R.id.add);
+        Listt = (ListView) view.findViewById(R.id.list);
+        //final ArrayAdapter<String>  arrayAdapter= new ArrayAdapter<String>(requireActivity() ,android.R.layout.simple_list_item_1,arrayList);
 
-        // Obtain a new or prior instance of HotStockViewModel from the
-        // ViewModelProviders utility class.
-        ViewModel viewModel = ViewModelProviders.of(this).get(ViewModel.class);
+        Add = (Button) view.findViewById(R.id.add);
+
+
+        final ViewModel viewModel = ViewModelProviders.of(this).get(ViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapshotLiveData();
 
         liveData.observe(requireActivity(), new Observer<DataSnapshot>() {
             @Override
-            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+            public void onChanged(@Nullable final DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
-                    // update the UI here with values in the snapshot
-                    String ticker = dataSnapshot.child("1").child("Name").getValue(String.class);
-                    Name.setText(ticker);
-                    String price = dataSnapshot.child("iD").getValue(String.class);
-                    if(price!=null)
-                    ID.setText(price);
-                    else
-                    ID.setText("none entered!");
+                    arrayList.clear();
+                    arrayList1.clear();
+                    Log.i("r", "61");
+
+                    for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Log.i("r", "64");
+                        if ((snapshot.hasChild("Name")) && (snapshot.hasChild("ID")) && snapshot.hasChild("Class")){
+
+                            arrayList.add("NAME:" + snapshot.child("Name").getValue().toString() + " " + "ENROLL.NO:" + snapshot.child("ID").getValue().toString()
+                            );
+                            arrayList1.add(snapshot.child("Class").getValue().toString());
+                        }
+                        arrayAdapter = new ArrayAdapter<String>(requireActivity(), R.layout.list_item, R.id.name, arrayList);
+                        Listt.setAdapter(arrayAdapter);
+
+
+
+                        Listt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
+        final Bundle bundle = new Bundle();
+        bundle.putString("z", arrayList.get(position));
+
+        bundle.putString("z1", "CLASS: " + arrayList1.get(position));
+navController.navigate(R.id.action_homeFragment_to_deetsFragment, bundle);}
+                        });
+                    }
                 }
+
+
+
+
             }
         });
+
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+
         return view;
     }
+
+    public void openDialog() {
+         dialog exampleDialog = new dialog();
+        exampleDialog.show(getParentFragmentManager(), "example com.example.justjet.dialog");
+    }
+
+
+
+
+
 
 }

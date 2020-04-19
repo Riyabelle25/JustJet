@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "446590452791",
+    "firebase_url": "https://justjet-c3d2a.firebaseio.com",
+    "project_id": "justjet-c3d2a",
+    "storage_bucket": "justjet-c3d2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446590452791:android:30b6288cc288740f842bb2",
+        "android_client_info": {
+          "package_name": "com.example.justjet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446590452791-g4vaq0rc1bom33oiqdjj29lgn20mkhis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXKmU8k_2oAIYZqJOVkA51Cx0qUl5TXDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446590452791-g4vaq0rc1bom33oiqdjj29lgn20mkhis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

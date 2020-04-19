@@ -1,14 +1,10 @@
-package com.example.justjet;
+package com.example.justjet.Ui;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -22,17 +18,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.justjet.R;
+import com.example.justjet.Models.ViewModel;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Objects;
-import com.example.justjet.dialog;
 
 public class HomeFragment extends Fragment {
 
@@ -114,7 +105,7 @@ navController.navigate(R.id.action_homeFragment_to_deetsFragment, bundle);}
 
     public void openDialog() {
          dialog exampleDialog = new dialog();
-        exampleDialog.show(getParentFragmentManager(), "example com.example.justjet.dialog");
+        exampleDialog.show(getParentFragmentManager(), "example com.example.justjet.Ui.dialog");
     }
 
 

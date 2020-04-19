@@ -1,19 +1,14 @@
-package com.example.justjet;
+package com.example.justjet.Models;
 
-import android.os.Handler;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.justjet.FirebaseQueryLiveData;
+import com.example.justjet.Services.FirebaseQueryLiveData;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-
-import java.util.List;
 
 public class ViewModel extends androidx.lifecycle.ViewModel {
   //  private final LiveData< List<DataSnapshot>> liveData;

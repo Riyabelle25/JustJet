@@ -1,4 +1,4 @@
-package com.example.justjet;
+package com.example.justjet.Ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.justjet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

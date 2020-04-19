@@ -1,4 +1,4 @@
-package com.example.justjet;
+package com.example.justjet.Ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.justjet.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

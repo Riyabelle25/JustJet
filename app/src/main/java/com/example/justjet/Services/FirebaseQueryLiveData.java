@@ -1,19 +1,15 @@
-package com.example.justjet;
+package com.example.justjet.Services;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.example.justjet.ViewModel;
 
 public class FirebaseQueryLiveData extends LiveData<DataSnapshot> {
 

@@ -37,8 +37,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
     FirebaseAuth firebaseAuth;
-    private    View view;
-    private FirebaseUser user;
+    final Bundle bundle = new Bundle();    private FirebaseUser user;
     private static EditText emailid, password;
     private static Button loginButton;
     private static TextView signUp;
@@ -49,9 +48,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             // User is signed in
-            final Bundle bundle = new Bundle();
+
             NavOptions navOptions = new NavOptions.Builder()
                     .setPopUpTo(R.id.loginFragment, true)
                     .build();
@@ -59,6 +59,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
             // No user is signed in
         }
+        
+
     }
 
     @Nullable
@@ -92,49 +94,48 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login:
-                checkValidation();
+
+                LoginUser();
                 break;
 
             case R.id.sign:
-                //navController.navigate(R.id.action_loginFragment_to_signupFragment);
+                Toast.makeText(getActivity(), "Site under construction!", Toast.LENGTH_LONG).show();
                 break;
         }
     }
-    private void checkValidation() {
-        String getEmailId = emailid.getText().toString();
-        String getPassword = password.getText().toString();
 
-        if(getEmailId==null){
-            Toast.makeText(getActivity(), "Hey fill the text field!", Toast.LENGTH_LONG).show();
-        }
-        else if(getPassword==null){
-            Toast.makeText(getActivity(), "Hey fill the text field!", Toast.LENGTH_LONG).show();
-        }
-        else
-        LoginUser();
-    }
 
     private void LoginUser() {
 
         String getEmailId = emailid.getText().toString();
         String getPassword = password.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword(getEmailId, getPassword).addOnCompleteListener((Activity) requireContext(), new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {   Toast.makeText(getActivity(), "Yay!", Toast.LENGTH_LONG).show();
 
-                  //  navController.navigate(R.id.action_loginFragment_to_homeFragment);
+
+        if (getEmailId.equals("") || getEmailId.length() == 0
+                || getPassword.equals("") || getPassword.length() == 0) {
+
+            Toast.makeText(getActivity(), "Fill text entries please", Toast.LENGTH_LONG).show();
+        }
+        else {
+
+            firebaseAuth.signInWithEmailAndPassword(getEmailId, getPassword).addOnCompleteListener((Activity) requireContext(), new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), "Yay!", Toast.LENGTH_LONG).show();
+                        NavOptions navOptions = new NavOptions.Builder()
+                                .setPopUpTo(R.id.loginFragment, true)
+                                .build();
+                        Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_homeFragment, bundle, navOptions);
+                    } else {
+                        Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_LONG).show();
+                    }
+
                 }
-                else {
-                    Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_LONG).show();
-                }
+            });
 
-            }
-        });
-
+        }
     }
-
 
 
 }

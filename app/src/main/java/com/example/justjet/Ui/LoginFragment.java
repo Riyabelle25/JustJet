@@ -8,7 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,12 +37,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
     FirebaseAuth firebaseAuth;
+    private    View view;
     private FirebaseUser user;
     private static EditText emailid, password;
     private static Button loginButton;
     private static TextView signUp;
     private static LinearLayout loginLayout;
-
 
     @Override
     public void onStart() {
@@ -48,17 +50,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Check if user is signed in (non-null) and update UI accordingly.
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
-            final Bundle bundle = new Bundle();
-            navController.navigate(R.id.action_loginFragment_to_homeFragment, bundle);
             // User is signed in
+            final Bundle bundle = new Bundle();
+            NavOptions navOptions = new NavOptions.Builder()
+                    .setPopUpTo(R.id.loginFragment, true)
+                    .build();
+            Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_homeFragment, bundle, navOptions);
+
+            // No user is signed in
         }
-
-
-        // No user is signed in
-
     }
-
 
     @Nullable
     @Override
@@ -95,10 +96,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.sign:
-
-                final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
-                final Bundle bundle = new Bundle();
-                navController.navigate(R.id.action_loginFragment_to_signupFragment, bundle);
+                //navController.navigate(R.id.action_loginFragment_to_signupFragment);
                 break;
         }
     }
@@ -125,9 +123,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {   Toast.makeText(getActivity(), "Yay!", Toast.LENGTH_LONG).show();
-                    final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
-                    final Bundle bundle = new Bundle();
-                    navController.navigate(R.id.action_loginFragment_to_homeFragment, bundle);
+
+                  //  navController.navigate(R.id.action_loginFragment_to_homeFragment);
                 }
                 else {
                     Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_LONG).show();

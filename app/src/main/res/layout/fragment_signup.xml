@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.SignupFragment"
+    android:background="@color/cardview_dark_background">
+
+
+    <EditText
+        android:id="@+id/semail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="50dp"
+        android:hint="Enter email"
+        android:textColorHint="#FFFFFF"
+        android:gravity="center_horizontal"
+        />
+
+    <EditText
+        android:id="@+id/spass"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="50dp"
+        android:hint="Enter password"
+        android:textColorHint="#FFFFFF"
+        android:gravity="center_horizontal"
+        />
+
+    <Button
+        android:id="@+id/Ssign"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="160dp"
+        android:text="Sign up!"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.DeetsFragment"
+    android:orientation="vertical"
+    android:background="#DED1E7">
+
+
+    <TextView
+        android:id="@+id/dname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text=" Loading"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:layout_marginTop="150dp"
+        android:id="@+id/dclass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text=" Loading"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+      />
+
+    <TextView
+        android:layout_marginTop="200dp"
+        android:id="@+id/did"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text=" Loading"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        />
+</FrameLayout>

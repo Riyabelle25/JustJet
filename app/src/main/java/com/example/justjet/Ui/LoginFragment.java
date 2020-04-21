@@ -35,11 +35,29 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
     FirebaseAuth firebaseAuth;
-    private FirebaseUser mUser;
+    private FirebaseUser user;
     private static EditText emailid, password;
     private static Button loginButton;
     private static TextView signUp;
     private static LinearLayout loginLayout;
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
+            final Bundle bundle = new Bundle();
+            navController.navigate(R.id.action_loginFragment_to_homeFragment, bundle);
+            // User is signed in
+        }
+
+
+        // No user is signed in
+
+    }
 
 
     @Nullable
@@ -53,25 +71,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final Bundle bundle = new Bundle();
-        bundle.putBoolean("test_boolean", true);
 
-        final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
         firebaseAuth = FirebaseAuth.getInstance();
-            mUser = FirebaseAuth.getInstance().getCurrentUser();
+            user = FirebaseAuth.getInstance().getCurrentUser();
         emailid = (EditText) view.findViewById(R.id.Lemail);
         password = (EditText) view.findViewById(R.id.Lpass);
         loginButton = (Button) view.findViewById(R.id.login);
         signUp = (TextView) view.findViewById(R.id.sign);
         loginLayout = (LinearLayout) view.findViewById(R.id.loginlay);
             setListeners();
-    }
-
-
-
-    private void initViews() {
-
-
     }
 
     private void setListeners() {
@@ -87,6 +95,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.sign:
+
                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
                 final Bundle bundle = new Bundle();
                 navController.navigate(R.id.action_loginFragment_to_signupFragment, bundle);
@@ -94,6 +103,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
     private void checkValidation() {
+        String getEmailId = emailid.getText().toString();
+        String getPassword = password.getText().toString();
+
+        if(getEmailId==null){
+            Toast.makeText(getActivity(), "Hey fill the text field!", Toast.LENGTH_LONG).show();
+        }
+        else if(getPassword==null){
+            Toast.makeText(getActivity(), "Hey fill the text field!", Toast.LENGTH_LONG).show();
+        }
+        else
         LoginUser();
     }
 
@@ -109,7 +128,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     final NavController navController = Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment);
                     final Bundle bundle = new Bundle();
                     navController.navigate(R.id.action_loginFragment_to_homeFragment, bundle);
-
                 }
                 else {
                     Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_LONG).show();

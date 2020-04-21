@@ -74,7 +74,7 @@ public class dialog extends DialogFragment {
 
       DemoRef.child("Students").push().child("Name").setValue(name);
       DemoRef.child("Students").push().child("Class").setValue(Class);
-      DemoRef.child("Students").child("Id").setValue(Id);
+      DemoRef.child("Students").push().child("Id").setValue(Id);
   }
 
 

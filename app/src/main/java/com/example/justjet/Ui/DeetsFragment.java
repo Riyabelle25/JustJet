@@ -17,7 +17,7 @@ public class DeetsFragment extends Fragment {
 
     private static View view;
     private static TextView Name;
-    private static TextView Class;
+    private static TextView Class,ID;
 
 
     public DeetsFragment() {
@@ -30,11 +30,12 @@ public class DeetsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_deets, container, false);
 
         Name=(TextView) view.findViewById(R.id.dname);
-
-       Class=(TextView) view.findViewById(R.id.dclass);
+        ID=(TextView) view.findViewById(R.id.did);
+        Class=(TextView) view.findViewById(R.id.dclass);
 
         Name.setText(getArguments().getString("z"));
-       Class.setText(getArguments().getString("z1"));
+        ID.setText(getArguments().getString("z2"));
+        Class.setText(getArguments().getString("z1"));
 
 
 

@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Ui.HomeFragment"
-    android:background="#000000"
+    android:background="#DED1E7"
     android:orientation="vertical">
 
-
-
-
-     <ListView
+    <androidx.recyclerview.widget.RecyclerView
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:id="@+id/list"
-         android:background="#000000"
+         android:background="#DED1E7"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/list_item"
         />
 
 
@@ -28,5 +27,6 @@
        android:fontFamily="serif"
         android:elevation="10dp"
         android:layout_gravity="center"
-        android:background="#FFFFFf"/>
+        android:background="#FFFFFF"/>
+
 </LinearLayout>
